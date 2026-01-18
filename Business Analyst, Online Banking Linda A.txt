@@ -1,0 +1,39 @@
+Business Analyst, Online Banking Linda Analyst
+Manager, Contract Management Esra Sedge
+Manager, Compliance Management Pranee Tan
+Manager IT End User Service Desk Karmen Spruce
+Manager IT End User Computing Haydar Katirci
+Manager IT Telecom and Infrastructure Jill Harkness
+Manager, Data Center and Hosting Services Tim Morrison
+Manager of IT Risk Management Aleksandr Milosevic
+Manager IT, project management office Jim Wingnut
+Zoë Robins Administration
+Madeleine Madden Administration
+Josha Sadowski Audit
+Kate Fleetwood Audit
+Priyanka Bose Banking Operations
+Hammed Animashaun Banking Operations
+Álvaro Morte Banking Operations
+Taylor Napier Banking Operations
+Alan Simmonds Banking Operations
+Gil Cardinal Communications
+Richard J. Lewis Communications
+Randy Bradshaw Corporate Services
+Tracey Cook Corporate Services
+Lubomir Mykytiuk Corporate Services
+Dakota House Facilities
+Lori Lea Okemah Facilities
+Renae Morrisseau Facilities
+Rick Belcourt Facilities
+Selina Hanusa Financial Services
+Buffy Gaudry Financial Services
+Shaneen Ann Fox Financial Services
+Allan Little Financial Services
+Danny Rabbit Financial Services
+Jesse Ed Azure Human Resources
+Stacy Da Silva Human Resources
+Vladimír Valenta Human Resources
+Samone Sayeses-Whitney Human Resources
+Paul Coeur Human Resources
+Graham Greene Information Technology
+
