@@ -2,11 +2,12 @@ import { useMemo, useState } from "react";
 
 type AddEmployeeFormProps = {
   departments: string[];
-  onAddEmployee: (firstName: string, departmentName: string) => void;
+  onAddEmployee: (firstName: string, lastName: string, departmentName: string) => void;
 };
 
 export default function AddEmployeeForm({ departments, onAddEmployee }: AddEmployeeFormProps) {
   const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [departmentName, setDepartmentName] = useState(departments[0] ?? "");
   const [errors, setErrors] = useState<string[]>([]);
 
@@ -17,8 +18,9 @@ export default function AddEmployeeForm({ departments, onAddEmployee }: AddEmplo
 
     const nextErrors: string[] = [];
 
-    const trimmedName = firstName.trim();
-    if (trimmedName.length < 3) nextErrors.push("First name must be at least 3 characters.");
+    const trimmedFirstName = firstName.trim();
+    const trimmedLastName = lastName.trim();
+    if (trimmedFirstName.length < 3) nextErrors.push("First name must be at least 3 characters.");
 
     if (!departmentOptions.includes(departmentName)) {
       nextErrors.push("Please select an existing department.");
@@ -28,7 +30,7 @@ export default function AddEmployeeForm({ departments, onAddEmployee }: AddEmplo
 
     if (nextErrors.length > 0) return;
 
-    onAddEmployee(trimmedName, departmentName);
+    onAddEmployee(trimmedFirstName, trimmedLastName, departmentName);
 
     setFirstName("");
     setDepartmentName(departmentOptions[0] ?? "");
@@ -55,6 +57,15 @@ export default function AddEmployeeForm({ departments, onAddEmployee }: AddEmplo
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="e.g. Hema"
+          />
+        </label>
+
+        <label>
+          Last Name{" "}
+          <input
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            placeholder="e.g. Abiodun"
           />
         </label>
 
