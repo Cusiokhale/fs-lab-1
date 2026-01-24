@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AddEmployeeForm from "./AddEmployeeForm";
 import DepartmentSection from "./DepartmentSection";
 
@@ -129,8 +129,6 @@ function App() {
     setDepartments(newDepartments);
   }
 
-  const currentYear = new Date().getFullYear();
-
   return (
     <div>
       <main>
@@ -144,7 +142,7 @@ function App() {
                 {dept.employees.length === 0 ? (
                   <li>No employees listed</li>
                 ) : (
-                  dept.employees.map(function (emp, empIndex) {
+                  dept.employees.map(function (_emp, _empIndex) {
                     return (
                       <DepartmentSection key={dept.name} department={dept} />
                     );
