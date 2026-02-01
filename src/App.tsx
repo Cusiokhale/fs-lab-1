@@ -1,14 +1,17 @@
-import Header from "./components/Header";
+import { useState } from "react";
 import Main from "./components/Main";
-import Footer from "./components/Footer";
-import "./App.css";
 
 export default function App() {
-  return (
-    <>
-      <Header />
-      <Main />
-      <Footer />
-    </>
-  );
+  const [departments, setDepartments] = useState([
+    {
+      name: "Business Analyst, Online Banking",
+      employees: [{ firstName: "Linda", lastName: "Analyst" }],
+    },
+    {
+      name: "Contract Management",
+      employees: [{ firstName: "Esra", lastName: "Sedge" }],
+    },
+  ]);
+
+  return <Main departments={departments} />;
 }
