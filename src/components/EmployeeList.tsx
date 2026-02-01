@@ -1,6 +1,6 @@
 import React from "react";
 import type { Employee } from "../types/Employee";
-import EmployeeListItem from "./EmployeeListItem";
+import "./EmployeeList.css";
 
 type EmployeeListProps = {
   employees: Employee[];
@@ -9,21 +9,27 @@ type EmployeeListProps = {
 const EmployeeList: React.FC<EmployeeListProps> = ({ employees }) => {
   if (employees.length === 0) {
     return (
-      <ul className="list-disc list-inside ml-4">
-        <li className="py-1 text-gray-500 italic">No employees listed</li>
-      </ul>
+      <div className="employee-list">
+        <div className="employee-item empty">
+          <div className="employee-name">No employees listed</div>
+        </div>
+      </div>
     );
   }
 
   return (
-    <ul className="list-disc employee-list list-inside ml-4">
+    <div className="employee-list">
       {employees.map((employee) => (
-        <EmployeeListItem
-          key={`${employee.firstName}-${employee.lastName}`}
-          employee={employee}
-        />
+        <div 
+          key={`${employee.firstName}-${employee.lastName}`} 
+          className="employee-item"
+        >
+          <div className="employee-name">
+            {employee.firstName} {employee.lastName}
+          </div>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
 

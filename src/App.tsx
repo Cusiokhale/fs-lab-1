@@ -1,14 +1,21 @@
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Footer from "./components/Footer";
-import "./App.css";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './Layout';
+import EmployeesPage from './components/EmployeesPage';
+import OrganizationPage from './components/OrganizationPage';
 
-export default function App() {
+const App: React.FC = () => {
   return (
-    <>
-      <Header />
-      <Main />
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<EmployeesPage />} />
+          <Route path="employees" element={<EmployeesPage />} />
+          <Route path="organization" element={<OrganizationPage />} />
+        </Route>
+      </Routes>
+    </Router>
   );
-}
+};
+
+export default App;

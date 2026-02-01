@@ -1,0 +1,44 @@
+.person-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.person-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+.person-item:last-child {
+  border-bottom: none;
+}
+
+.person-item:hover {
+  background-color: #f8f9fa;
+}
+
+.person-name {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.pronouns {
+  font-weight: normal;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.person-title {
+  color: #7f8c8d;
+  font-size: 0.95rem;
+  text-align: right;
+}
