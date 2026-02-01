@@ -144,7 +144,7 @@ function EmployeesPage() {
           </p>
           {/* You can reuse the PersonList component here with your employee data */}
           <div className="employee-list">
-            {departments.map(function (dept, index) {
+            {departments.map(function (dept) {
               return <DepartmentSection key={dept.name} department={dept} />;
             })}
 
