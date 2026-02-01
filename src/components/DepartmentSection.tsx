@@ -1,6 +1,7 @@
 import React from "react";
 import type { Department } from "../types/Employee";
 import EmployeeList from "./EmployeeList";
+import "./EmployeeList.css";
 
 type DepartmentSectionProps = {
   department: Department;
@@ -8,10 +9,10 @@ type DepartmentSectionProps = {
 
 const DepartmentSection: React.FC<DepartmentSectionProps> = ({ department }) => {
   return (
-    <section className="mb-6 bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-      <h2 className="text-xl font-semibold text-gray-800 mb-3">
+    <section>
+      <h3 className="department-name">
         {department.name}
-      </h2>
+      </h3>
 
       <EmployeeList employees={department.employees} />
     </section>

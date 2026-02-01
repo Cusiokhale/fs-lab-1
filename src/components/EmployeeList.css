@@ -1,0 +1,53 @@
+.employee-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  color: #2c3e50;
+}
+
+.department-name {
+    color: #2c3e50;
+}
+
+.employee-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+.employee-item:last-child {
+  border-bottom: none;
+}
+
+.employee-item:hover {
+  background-color: #f8f9fa;
+}
+
+.employee-item.empty {
+  font-style: italic;
+  color: #7f8c8d;
+  justify-content: center;
+}
+
+.employee-item.empty:hover {
+  background-color: white;
+}
+
+.employee-name {
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.employee-position {
+  color: #7f8c8d;
+  font-size: 0.95rem;
+  text-align: right;
+}
