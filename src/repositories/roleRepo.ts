@@ -16,6 +16,27 @@ function saveRoles(roles: Role[]) {
   localStorage.setItem(ROLES_KEY, JSON.stringify(roles));
 }
 
+/* -------- SEED DATA IF EMPTY -------- */
+
+function seedIfEmpty() {
+  const current = loadRoles();
+  if (current.length > 0) return;
+
+  const seeded: Role[] = [
+    { title: "CEO/Chair of Board", employee: { firstname: "Jo-Anne", lastname: "Sinclair" } },
+    { title: "COO/VP Operations", employee: { firstname: "Jackson", lastname: "Smith" } },
+    { title: "CFO/VP Administration", employee: { firstname: "Susan", lastname: "Thomas" } },
+    { title: "VP Client Services", employee: { firstname: "Richa", lastname: "Kaur" } },
+    { title: "CIO", employee: { firstname: "Josee", lastname: "Benjamin" } }
+  ];
+
+  saveRoles(seeded);
+}
+
+seedIfEmpty();
+
+/* -------- REPOSITORY -------- */
+
 export const roleRepo = {
   getAll(): Role[] {
     return loadRoles();
