@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
-import type { Role } from "../types/Employee";
+import { getRoles } from "../repositories/organization.repository";
 import "./OrganizationPage.css";
-import { roleRepo } from "../repositories/roleRepo";
-import AddRoleForm from "./AddRoleForm";
 
 function OrganizationPage() {
-  const [roles, setRoles] = useState<Role[]>([]);
-
-  function reloadRoles() {
-    setRoles(roleRepo.getAll());
-  }
+  const [roles, setRoles] = useState<any[]>([]);
 
   useEffect(() => {
-    reloadRoles();
+    async function loadRoles() {
+      const data = await getRoles();
+      setRoles(data);
+    }
+
+    loadRoles();
   }, []);
 
   return (
@@ -23,17 +22,15 @@ function OrganizationPage() {
       </p>
 
       <div className="employee-list">
-        {roles.map((r) => (
-          <div key={r.title} className="department-section">
-            <h3>{r.title}</h3>
+        {roles.map((role, index) => (
+          <div key={index} className="department-section">
+            <h3>{role.title}</h3>
             <div className="employee-item">
-              {r.employee.firstname} {r.employee.lastname}
+              {role.employee.firstname} {role.employee.lastname}
             </div>
           </div>
         ))}
       </div>
-
-      <AddRoleForm onRoleAdded={reloadRoles} />
     </div>
   );
 }
