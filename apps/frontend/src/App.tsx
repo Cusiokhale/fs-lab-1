@@ -1,8 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './Layout';
-import EmployeesPage from './components/EmployeesPage';
-import OrganizationPage from './components/OrganizationPage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Layout from "./Layout";
+import EmployeesPage from "./components/EmployeesPage";
+import OrganizationPage from "./components/OrganizationPage";
 
 const App: React.FC = () => {
   return (

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+
 import AddEmployeeForm from "./AddEmployeeForm";
 import DepartmentSection from "./DepartmentSection";
 import { organizationRepo } from "../repositories/organizationRepo";
@@ -49,10 +51,30 @@ function EmployeesPage() {
               <DepartmentSection key={dept.name} department={dept} />
             ))}
 
-            <AddEmployeeForm
-              departments={departments.map((dept) => dept.name)}
-              onAddEmployee={handleAddEmployee}
-            />
+            <SignedIn>
+              <AddEmployeeForm
+                departments={departments.map((dept) => dept.name)}
+                onAddEmployee={handleAddEmployee}
+              />
+            </SignedIn>
+
+            <SignedOut>
+              <div
+                style={{
+                  marginTop: "20px",
+                  padding: "16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  textAlign: "center",
+                  backgroundColor: "#f9f9f9",
+                }}
+              >
+                <p style={{ marginBottom: "10px" }}>
+                  Please sign in to add a new employee.
+                </p>
+                <SignInButton />
+              </div>
+            </SignedOut>
           </div>
         </div>
       </main>
