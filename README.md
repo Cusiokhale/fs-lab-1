@@ -71,3 +71,49 @@ export default defineConfig([
   },
 ])
 ```
+
+# Lab 5.1 Clerk Authentication
+
+## Features
+- User authentication using Clerk
+- Sign in and sign out functionality
+- Employees page:
+  - View employees (public)
+  - Add employee (only when signed in)
+- Organization page:
+  - Restricted content when signed out
+  - Sign-in prompt displayed
+
+## Tech Stack
+- React + TypeScript
+- Vite
+- Clerk Authentication
+
+## How to Run
+1. Navigate to frontend:
+   cd apps/frontend
+
+2. Install dependencies:
+   npm install
+
+3. Start the app:
+   npm run dev
+
+
+# Lab 5.2 Additional Feature documentation
+
+### What change you wanted to make in your application:
+
+I wanted to add pagination to my application so that employees are not all displayed at once, but instead shown in smaller pages.
+
+### What tool or tools you used to make this change:
+
+I made manual code changes in my repository and React components, including creating a pagination function and updating state with useState and useEffect.
+
+### How this change affects the user experience:
+
+This makes the app easier to use because users can control how many employees they see at a time. It reduces clutter and makes the page easier to read and navigate.
+
+### How this change affects your understanding of the app:
+
+It helped me understand that pagination is currently handled on the frontend since I am using localStorage. I also realized that this approach has limits, because all data is still loaded first before being paginated.
