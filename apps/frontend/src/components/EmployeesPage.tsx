@@ -7,13 +7,47 @@ import { organizationRepo } from "../repositories/organizationRepo";
 import { organizationService } from "../services/organizationService";
 import "./EmployeesPage.css";
 import type { Department } from "../types/Employee";
+import type { EmployeeWithDepartment } from "../repositories/organizationRepo";
 
 function EmployeesPage() {
-  const [departments, setDepartments] = useState<Department[]>([]);
+  const [allDepartments, setAllDepartments] = useState<Department[]>([]);
+  const [pagedDepartments, setPagedDepartments] = useState<Department[]>([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
+  const [totalPages, setTotalPages] = useState(1);
+
+  function groupEmployeesByDepartment(
+    employees: EmployeeWithDepartment[],
+    departments: Department[],
+  ): Department[] {
+    return departments
+      .map((dept) => ({
+        name: dept.name,
+        employees: employees
+          .filter((employee) => employee.departmentName === dept.name)
+          .map(({ firstName, lastName }) => ({ firstName, lastName })),
+      }))
+      .filter((dept) => dept.employees.length > 0);
+  }
+
+  function loadData(currentPage = page, currentPageSize = pageSize) {
+    const departments = organizationRepo.getDepartments();
+    const paginatedEmployees = organizationRepo.getEmployeesPaginated(
+      currentPage,
+      currentPageSize,
+    );
+
+    setAllDepartments(departments);
+    setPagedDepartments(
+      groupEmployeesByDepartment(paginatedEmployees.data, departments),
+    );
+    setPage(paginatedEmployees.page);
+    setPageSize(paginatedEmployees.pageSize);
+    setTotalPages(paginatedEmployees.totalPages || 1);
+  }
 
   useEffect(() => {
-    const loaded = organizationRepo.getDepartments();
-    setDepartments(loaded);
+    loadData(1, pageSize);
   }, []);
 
   function handleAddEmployee(
@@ -33,8 +67,24 @@ function EmployeesPage() {
       return;
     }
 
-    const updated = organizationRepo.getDepartments();
-    setDepartments(updated);
+    loadData(page, pageSize);
+  }
+
+  function handlePageSizeChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const newPageSize = Number(e.target.value);
+    loadData(1, newPageSize);
+  }
+
+  function handlePreviousPage() {
+    if (page > 1) {
+      loadData(page - 1, pageSize);
+    }
+  }
+
+  function handleNextPage() {
+    if (page < totalPages) {
+      loadData(page + 1, pageSize);
+    }
   }
 
   return (
@@ -46,14 +96,28 @@ function EmployeesPage() {
             View all company employees and their positions.
           </p>
 
+          <div style={{ marginBottom: "16px" }}>
+            <label htmlFor="pageSize">Show: </label>
+            <select
+              id="pageSize"
+              value={pageSize}
+              onChange={handlePageSizeChange}
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={15}>15</option>
+            </select>
+            <span style={{ marginLeft: "8px" }}>employees per page</span>
+          </div>
+
           <div className="employee-list">
-            {departments.map((dept) => (
+            {pagedDepartments.map((dept) => (
               <DepartmentSection key={dept.name} department={dept} />
             ))}
 
             <SignedIn>
               <AddEmployeeForm
-                departments={departments.map((dept) => dept.name)}
+                departments={allDepartments.map((dept) => dept.name)}
                 onAddEmployee={handleAddEmployee}
               />
             </SignedIn>
@@ -75,6 +139,20 @@ function EmployeesPage() {
                 <SignInButton />
               </div>
             </SignedOut>
+          </div>
+
+          <div style={{ marginTop: "20px", textAlign: "center" }}>
+            <button onClick={handlePreviousPage} disabled={page === 1}>
+              Previous
+            </button>
+
+            <span style={{ margin: "0 12px" }}>
+              Page {page} of {totalPages}
+            </span>
+
+            <button onClick={handleNextPage} disabled={page === totalPages}>
+              Next
+            </button>
           </div>
         </div>
       </main>
